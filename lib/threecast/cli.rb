@@ -17,20 +17,23 @@ class Threecast::CLI
   def menu
     input = nil
     while input != 'exit'
-      puts "Enter the story number to open in your browser:"
+      puts "Enter the story number to open in your browser or exit:"
       input = gets.strip.downcase
 
-      if input.to_i > 0
+      if input.to_i.between?(1,3)
         open_up = @news[input.to_i - 1]
-        system("open", "#{@news.url}")
+        system("open", "#{open_up.url}")
+        list_stories
+        menu
       else
         puts "Please enter a number or exit."
-        list_stories
       end
     end
+    goodbye
   end
 
   def goodbye
     puts "Check back for the latest news."
+    exit
   end
 end
