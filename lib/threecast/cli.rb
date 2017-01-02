@@ -6,17 +6,23 @@ class Threecast::CLI
   end
 
   def list_stories
-    puts "Today's News Stories:"
+    puts ""
+    puts "Welcome to Threecast"
+    puts "Here are today's top news stories:"
+    puts "------------------------------------"
+    puts ""
 
     @news = Threecast::News.today
     @news.each.with_index(1) do |story, i|
-      puts "#{i}. #{story.network}, #{story.date}: #{story.story}"
+      puts "(#{i}) #{story.network} - #{story.date}: #{story.story}"
+      puts "" unless i == 3
     end
   end
 
   def menu
     input = nil
     while input != 'exit'
+      puts "------------------------------------"
       puts "Enter the story number to open in your browser or exit:"
       input = gets.strip.downcase
 
