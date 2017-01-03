@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "threecast"
+require_relative '../lib/threecast'
 
 Threecast::CLI.new.call
